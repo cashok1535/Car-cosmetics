@@ -9,7 +9,7 @@ body {
   padding: 12px 25px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 1220px;
+  max-width: 1450px;
   margin: 0 auto;
   align-items: center;
   position: relative;
@@ -39,4 +39,10 @@ body {
 
 .support__icon {
   margin-right: 10px;
+}
+
+.header__top, .support__button {
+  color: #667085;
+  font-family: "InterTight", sans-serif;
+  font-size: 16px;
 }
