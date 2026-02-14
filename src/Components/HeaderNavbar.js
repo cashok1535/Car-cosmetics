@@ -1,9 +1,15 @@
-// import { useState } from "react";
+import { useState } from "react";
 import logo from "../img/carcosmetics-logo.svg";
 
 export const HeaderNavbar = () => {
   // const [wishListCount, setWishListCount] = useState(0);
   // const [orderCount, setOrderCount] = useState(0);
+  const [isOpenSignIn, setIsOpenSignIn] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsOpenSignIn((prev) => !prev);
+  };
+
   return (
     <section className="header__navbar">
       <div className="header__navbar__top">
@@ -56,7 +62,7 @@ export const HeaderNavbar = () => {
           </svg>
           <input className="search__input" placeholder="Search" />
         </div>
-        <button className="header__button">
+        <button onClick={handleOpenModal} className="header__button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -79,6 +85,11 @@ export const HeaderNavbar = () => {
           </svg>
           Sign in
         </button>
+        {isOpenSignIn && (
+          <div className="signInModal">
+            <h4 className="logInTitle">Login</h4>
+          </div>
+        )}
         <button className="header__button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -117,6 +128,54 @@ export const HeaderNavbar = () => {
           </svg>
           My cart <div className="count__books">{}</div>
         </button>
+      </div>
+      <div className="header__navbar__bottom">
+        <ul className="header__navbar__bottom__flex">
+          <li className="header__navbar__bottom__button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M9.16333 8.33334H9.17581M9.16642 13.3333H9.17889"
+                stroke="#14181F"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M5.83325 10.8333L12.4999 10.8333"
+                stroke="#14181F"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <circle
+                cx="1.25"
+                cy="1.25"
+                r="1.25"
+                transform="matrix(1 0 0 -1 13.3333 6.66667)"
+                stroke="#14181F"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></circle>
+              <path
+                d="M2.31194 9.28661C1.47599 10.2202 1.458 11.6288 2.22522 12.6197C3.74768 14.5861 5.41403 16.2524 7.38035 17.7749C8.37125 18.5421 9.77984 18.5241 10.7135 17.6881C13.2483 15.4185 15.5697 13.0466 17.81 10.44C18.0315 10.1823 18.17 9.86641 18.2011 9.52803C18.3386 8.03166 18.6211 3.72057 17.4503 2.54979C16.2795 1.37901 11.9684 1.66148 10.4721 1.79898C10.1337 1.83007 9.81782 1.96861 9.56012 2.1901C6.95352 4.43039 4.58159 6.75176 2.31194 9.28661Z"
+                stroke="#14181F"
+                strokeWidth="1.5"
+              ></path>
+            </svg>
+            Hot offers
+          </li>
+          <li className="header__navbar__bottom__button">Shop</li>
+          <li className="header__navbar__bottom__button">About</li>
+          <li className="header__navbar__bottom__button">FAQ</li>
+          <li className="header__navbar__bottom__button">Contact</li>
+        </ul>
       </div>
     </section>
   );

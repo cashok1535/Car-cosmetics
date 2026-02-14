@@ -122,4 +122,64 @@ body {
   font-weight: bold;
   font-size: 15px;
   gap: 5px;
+  cursor: pointer;
+}
+
+.header__navbar__bottom__flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 462.3px;
+  margin: 0 auto;
+}
+
+.header__navbar__bottom__button {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  font-family: "InterTight", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  height: 43px;
+  position: relative;
+}
+
+.header__navbar__bottom__button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0px;
+  height: 2px;
+  transition: all .6s;
+
+}
+
+.header__navbar__bottom__button:hover::after {
+  width: 100%;
+  background-color: #f8ad40;
+  left: 0;
+}
+
+.header__navbar__bottom__button svg {
+  margin-right: 5px;
+}
+
+.logInTitle {
+  margin: 0;
+}
+
+.signInModal {
+  position: fixed;
+  top: 130px;
+  right: 12.5%;
+  width: 340px;
+  height: 389px;
+  font-family: "InterTight", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  background-color: red;
+  padding: 20px 20px 25px;
 }
