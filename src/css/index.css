@@ -125,6 +125,10 @@ body {
   cursor: pointer;
 }
 
+.header__navbar {
+  box-shadow: 0 13px 17px #0000001c;
+}
+
 .header__navbar__bottom__flex {
   display: flex;
   align-items: center;
@@ -152,8 +156,8 @@ body {
   bottom: 0;
   left: 50%;
   width: 0px;
-  height: 2px;
-  transition: all .6s;
+  height: 3px;
+  transition: all .4s;
 
 }
 
@@ -174,12 +178,139 @@ body {
 .signInModal {
   position: fixed;
   top: 130px;
-  right: 12.5%;
   width: 340px;
-  height: 389px;
   font-family: "InterTight", sans-serif;
   font-weight: bold;
   font-size: 30px;
-  background-color: red;
+  background-color: #fff;
   padding: 20px 20px 25px;
+  border-radius: 8px;
+}
+
+.logInClose {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0deg);
+  transition: all .4s;
+}
+
+.logInClose:hover {
+  transform: rotate(180deg);
+}
+
+.logInClose:hover svg>.close__line {
+  stroke: #000;
+}
+
+.close__line {
+  transition: all .5s;
+}
+
+.logInClose svg line {
+  stroke: #929292;
+}
+
+.signInModal__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.log__in__input {
+  width: 100%;
+  padding: 25px 10px 10px 40px;
+  box-sizing: border-box;
+}
+
+.input-group {
+  position: relative;
+  margin-top: 20px;
+}
+
+.log__in__input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.log__in__label {
+  position: absolute;
+  left: 12px;
+  top: 15px;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: white;
+  padding: 0 4px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.log__in__input:focus+.log__in__label,
+.log__in__input:not(:placeholder-shown)+.log__in__label {
+  top: -10px;
+  left: 8px;
+  font-size: 12px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.log__in__input:focus {
+  border-color: #000000;
+}
+
+.form__necessarily {
+  color: rgb(248, 62, 62);
+}
+
+.log__in__input__checkBox {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.log__in__input__checkBox::after {
+  content: "Remember me";
+  text-wrap: nowrap;
+  position: absolute;
+  padding-left: 25px;
+  font-weight: normal;
+  font-size: 16px;
+  color: #667085;
+}
+
+.log__in__button {
+  color: #272C36;
+  background-color: #edf0f2;
+  cursor: pointer;
+  padding: 15px 20px;
+  width: 300px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  font-family: "InterTight", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 25px auto 0 auto;
+}
+
+.log__in__link {
+  font-size: 14px;
+  color: #00000080;
+  text-decoration: none;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }

@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import logo from "../img/carcosmetics-logo.svg";
 
 export const HeaderNavbar = () => {
   // const [wishListCount, setWishListCount] = useState(0);
   // const [orderCount, setOrderCount] = useState(0);
   const [isOpenSignIn, setIsOpenSignIn] = useState(false);
-
+  const [logInModalPosition, setLogInModalPosition] = useState(0);
+  const modalFormPositionRef = useRef(null);
   const handleOpenModal = () => {
     setIsOpenSignIn((prev) => !prev);
   };
+
+  const handleCloseModal = () => {
+    setIsOpenSignIn(false);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setLogInModalPosition(
+        modalFormPositionRef.current.getBoundingClientRect().left,
+      );
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <section className="header__navbar">
@@ -54,7 +72,7 @@ export const HeaderNavbar = () => {
             width="20px"
             height="20px"
             viewBox="0 0 119.828 122.88"
-            enable-background="new 0 0 119.828 122.88"
+            enableBackground="new 0 0 119.828 122.88"
           >
             <g>
               <path d="M48.319,0C61.662,0,73.74,5.408,82.484,14.152c8.744,8.744,14.152,20.823,14.152,34.166 c0,12.809-4.984,24.451-13.117,33.098c0.148,0.109,0.291,0.23,0.426,0.364l34.785,34.737c1.457,1.449,1.465,3.807,0.014,5.265 c-1.449,1.458-3.807,1.464-5.264,0.015L78.695,87.06c-0.221-0.22-0.408-0.46-0.563-0.715c-8.213,6.447-18.564,10.292-29.814,10.292 c-13.343,0-25.423-5.408-34.167-14.152C5.408,73.741,0,61.661,0,48.318s5.408-25.422,14.152-34.166C22.896,5.409,34.976,0,48.319,0 L48.319,0z M77.082,19.555c-7.361-7.361-17.53-11.914-28.763-11.914c-11.233,0-21.403,4.553-28.764,11.914 C12.194,26.916,7.641,37.085,7.641,48.318c0,11.233,4.553,21.403,11.914,28.764c7.36,7.361,17.53,11.914,28.764,11.914 c11.233,0,21.402-4.553,28.763-11.914c7.361-7.36,11.914-17.53,11.914-28.764C88.996,37.085,84.443,26.916,77.082,19.555 L77.082,19.555z" />
@@ -62,7 +80,11 @@ export const HeaderNavbar = () => {
           </svg>
           <input className="search__input" placeholder="Search" />
         </div>
-        <button onClick={handleOpenModal} className="header__button">
+        <button
+          ref={modalFormPositionRef}
+          onClick={handleOpenModal}
+          className="header__button"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -86,8 +108,79 @@ export const HeaderNavbar = () => {
           Sign in
         </button>
         {isOpenSignIn && (
-          <div className="signInModal">
-            <h4 className="logInTitle">Login</h4>
+          <div
+            style={{
+              left: `${logInModalPosition}px`,
+            }}
+            className="signInModal"
+          >
+            <div className="signInModal__top">
+              <h4 className="logInTitle">Login</h4>
+              <button onClick={handleCloseModal} className="logInClose">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  width="25"
+                  height="25"
+                  aria-hidden="true"
+                >
+                  <line
+                    className="close__line"
+                    x1="9"
+                    y1="9"
+                    x2="39"
+                    y2="39"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    className="close__line"
+                    x1="39"
+                    y1="9"
+                    x2="9"
+                    y2="39"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="log__in__form"
+            >
+              <div className="input-group">
+                <input
+                  id="username"
+                  className="log__in__input"
+                  placeholder=" "
+                />
+                <label htmlFor="username" className="log__in__label">
+                  Username or email <span className="form__necessarily">*</span>
+                </label>
+              </div>
+              <div className="input-group">
+                <input
+                  id="password"
+                  className="log__in__input"
+                  placeholder=" "
+                />
+                <label htmlFor="password" className="log__in__label">
+                  Password <span className="form__necessarily">*</span>
+                </label>
+              </div>
+              <input className="log__in__input__checkBox" type="checkbox" />
+              <div>
+                <button className="log__in__button" type="submit">
+                  Login
+                </button>
+              </div>
+              <a className="log__in__link" href="#123">
+                Lost your password?
+              </a>
+            </form>
           </div>
         )}
         <button className="header__button">
